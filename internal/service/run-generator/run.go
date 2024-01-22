@@ -6,6 +6,7 @@ type ActivityFilterOption struct {
 	DURATION       time.Duration
 	ACTIVITY_TYPES []ActivityType
 	FRACTIONS      []Fraction
+	MULTIPLE_PICK  bool
 }
 
 type SortFunction func(a, b *Activity) bool
@@ -15,6 +16,14 @@ type SortFunctionName string
 type RunOption struct {
 	ACTIVITY_FILTER_OPTIONS []ActivityFilterOption
 	SORT_FUNCTION_NAMES     []SortFunctionName
+}
+
+func (ro *RunOption) GetTotalDuration() time.Duration {
+	duration := time.Duration(0)
+	for _, afo := range ro.ACTIVITY_FILTER_OPTIONS {
+		duration += afo.DURATION
+	}
+	return duration
 }
 
 type Run struct {

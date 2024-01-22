@@ -10,6 +10,10 @@ export function GetActivityTypes() {
   return window['go']['main']['App']['GetActivityTypes']();
 }
 
+export function GetFractions() {
+  return window['go']['main']['App']['GetFractions']();
+}
+
 export function SaveRun(arg1) {
   return window['go']['main']['App']['SaveRun'](arg1);
 }

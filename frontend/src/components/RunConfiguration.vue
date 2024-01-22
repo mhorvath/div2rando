@@ -5,15 +5,14 @@ import Button from "primevue/button";
 
 import { GenerateRun } from "../../wailsjs/go/main/App";
 
-const fractions = ["Hyenas", "Outcasts", "True Sons", "Black Tusk", "Cleaners"];
-
 const config = defineModel();
 
 function addActivityFilter() {
   config.value.ACTIVITY_FILTER_OPTIONS.push({
     ACTIVITY_TYPES: [],
-    FRACTIONS: [...fractions],
+    FRACTIONS: [],
     DURATION: 0,
+    MULTIPLE_PICK: true,
   });
 }
 

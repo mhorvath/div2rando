@@ -6,4 +6,6 @@ export function GenerateRun(arg1:runGeneratorService.RunOption):Promise<runGener
 
 export function GetActivityTypes():Promise<Array<runGeneratorService.ActivityType>>;
 
+export function GetFractions():Promise<Array<runGeneratorService.Fraction>>;
+
 export function SaveRun(arg1:runGeneratorService.Run):Promise<void>;
