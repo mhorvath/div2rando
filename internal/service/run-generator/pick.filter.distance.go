@@ -1,7 +1,5 @@
 package runGeneratorService
 
-import "fmt"
-
 type PickFilterDistance struct {
 	ACTIVITY_FILTER_OPTION ActivityFilterOption
 	ACTIVITIES             *[]Activity
@@ -19,7 +17,6 @@ func (pf *PickFilterDistance) Validate(a Activity) bool {
 	cd2To1 := calculateCelestialDirection(loc2, loc1)
 	distancePenalty := loc1.PENALTY[cd1To2] + loc2.PENALTY[cd2To1]
 	totalDistance := distance + float64(distancePenalty)
-	fmt.Printf("------ %v | %v\n", distancePenalty, totalDistance)
 
 	return totalDistance < float64(pf.ACTIVITY_FILTER_OPTION.MAX_DISTANCE)
 }
