@@ -2,7 +2,6 @@ package runGeneratorService
 
 import (
 	"changeme/internal/utils"
-	"fmt"
 	"math/rand"
 )
 
@@ -35,8 +34,6 @@ type RunGenerator struct{}
 func (rg *RunGenerator) GenerateRun(option RunOption) Run {
 	run := &Run{}
 
-	fmt.Printf("%v", option)
-
 	totalActivities := []Activity{}
 
 	for _, activityFilterOption := range option.ACTIVITY_FILTER_OPTIONS {
@@ -56,11 +53,16 @@ func (rg *RunGenerator) GenerateRun(option RunOption) Run {
 			ACTIVITY_FILTER_OPTION: activityFilterOption,
 			ACTIVITIES:             &activities,
 		}
+		pickFilterDistance := &PickFilterDistance{
+			ACTIVITY_FILTER_OPTION: activityFilterOption,
+			ACTIVITIES:             &activities,
+		}
 
 		allPickFilters := []PickFilterFunc{
 			pickFilterMultiplePick,
 			pickFilterType,
 			pickFilterFraction,
+			pickFilterDistance,
 			pickFilterDuration,
 		}
 		maxIV := 5000
@@ -114,7 +116,9 @@ func (rg *RunGenerator) GetFractions() []Fraction {
 }
 
 func init() {
-	utils.LoadJSON(DB_FILES[DB_KEY_ACTIVITIES], &ALL_DB_ACTIVITIES)
+	if err := utils.LoadJSON(DB_FILES[DB_KEY_ACTIVITIES], &ALL_DB_ACTIVITIES); err != nil {
+		utils.SaveJSON(DB_FILES[DB_KEY_ACTIVITIES], &ALL_DB_ACTIVITIES)
+	}
 	/*
 		fmt.Println("--------------------------------------------------------------")
 		rg := RunGenerator{}

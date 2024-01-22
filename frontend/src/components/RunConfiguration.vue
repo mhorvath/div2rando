@@ -13,6 +13,7 @@ function addActivityFilter() {
     FRACTIONS: [],
     DURATION: 0,
     MULTIPLE_PICK: true,
+    MAX_DISTANCE: 0,
   });
 }
 

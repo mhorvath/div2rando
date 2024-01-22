@@ -7,6 +7,7 @@ type ActivityFilterOption struct {
 	ACTIVITY_TYPES []ActivityType
 	FRACTIONS      []Fraction
 	MULTIPLE_PICK  bool
+	MAX_DISTANCE   uint
 }
 
 type SortFunction func(a, b *Activity) bool

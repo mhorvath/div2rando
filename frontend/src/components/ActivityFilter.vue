@@ -49,6 +49,15 @@ const multiplePick = computed({
   },
 });
 
+const maxDistance = computed({
+  get() {
+    return model.value.MAX_DISTANCE;
+  },
+  set(value) {
+    model.value.MAX_DISTANCE = value;
+  },
+});
+
 const durationInNanoSeconds = computed(() => {
   return model.value.DURATION;
 });
@@ -61,5 +70,6 @@ const durationInNanoSeconds = computed(() => {
     <InputNumber v-model="duration" placeholder="Duration in minutes" />
     <span>{{ $formatNanoseconds(duration * NANOSEC_M) }}</span>
     <SelectButton v-model="multiplePick" :options="multiplePickOptions" optionLabel="label" optionValue="value" />
+    <InputNumber v-model="maxDistance" placeholder="Max distance" />
   </div>
 </template>
