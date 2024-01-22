@@ -3,6 +3,7 @@ export namespace runGeneratorService {
 	export class Location {
 	    x: number;
 	    y: number;
+	    penalty: {[key: string]: number};
 	
 	    static createFrom(source: any = {}) {
 	        return new Location(source);
@@ -12,6 +13,7 @@ export namespace runGeneratorService {
 	        if ('string' === typeof source) source = JSON.parse(source);
 	        this.x = source["x"];
 	        this.y = source["y"];
+	        this.penalty = source["penalty"];
 	    }
 	}
 	export class Activity {
@@ -19,7 +21,8 @@ export namespace runGeneratorService {
 	    duration: number;
 	    type: string;
 	    fraction: string;
-	    location: Location;
+	    entryLocation: Location;
+	    exitLocation: Location;
 	    fastTravel: boolean;
 	
 	    static createFrom(source: any = {}) {
@@ -32,7 +35,8 @@ export namespace runGeneratorService {
 	        this.duration = source["duration"];
 	        this.type = source["type"];
 	        this.fraction = source["fraction"];
-	        this.location = this.convertValues(source["location"], Location);
+	        this.entryLocation = this.convertValues(source["entryLocation"], Location);
+	        this.exitLocation = this.convertValues(source["exitLocation"], Location);
 	        this.fastTravel = source["fastTravel"];
 	    }
 	
